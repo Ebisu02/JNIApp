@@ -5,7 +5,7 @@
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_jniapp_JNIWrapper_onsurfacecreated(JNIEnv *env, jclass cls) {
+Java_com_example_jniapp_JNIWrapper_JNIOnSurfaceCreated(JNIEnv *env, jclass cls) {
     glClearColor(0.21f, 0.43f, 0.71f, 1.0f);
     glMatrixMode(GL_PROJECTION);
     glOrthof(-8, 8, -8, 8, -8, 8);
@@ -15,7 +15,7 @@ Java_com_example_jniapp_JNIWrapper_onsurfacecreated(JNIEnv *env, jclass cls) {
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_jniapp_JNIWrapper_onsurfacechanged(JNIEnv *env, jclass cls, jint width,
+Java_com_example_jniapp_JNIWrapper_JNIOnSurfaceChanged(JNIEnv *env, jclass cls, jint width,
                                                   jint height) {
 }
 
@@ -64,7 +64,7 @@ GLfloat textureCoords[] = {
 int angle = 0;
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_example_jniapp_JNIWrapper_ondrawframe(JNIEnv *env, jclass cls) {
+JNIEXPORT void JNICALL Java_com_example_jniapp_JNIWrapper_JNIOnDrawFrame(JNIEnv *env, jclass cls) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     glScalef(3, 1.5, 3);

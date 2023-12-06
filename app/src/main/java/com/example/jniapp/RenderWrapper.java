@@ -1,8 +1,8 @@
 package com.example.jniapp;
 
-import static com.example.jniapp.JNIWrapper.ondrawframe;
-import static com.example.jniapp.JNIWrapper.onsurfacechanged;
-import static com.example.jniapp.JNIWrapper.onsurfacecreated;
+import static com.example.jniapp.JNIWrapper.JNIOnSurfaceChanged;
+import static com.example.jniapp.JNIWrapper.JNIOnDrawFrame;
+import static com.example.jniapp.JNIWrapper.JNIOnSurfaceCreated;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -24,7 +24,7 @@ public class RenderWrapper implements GLSurfaceView.Renderer {
         gl.glBindTexture(GL10.GL_TEXTURE_2D, textureId);
         gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR);
         android.content.res.Resources resources = context.getResources();
-        int resourceId = R.drawable.t;
+        int resourceId = R.drawable.images;
         android.graphics.Bitmap bitmap = android.graphics.BitmapFactory.decodeResource(resources, resourceId);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
         bitmap.recycle();
@@ -33,19 +33,19 @@ public class RenderWrapper implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         loadTexture(gl);
-        onsurfacecreated();
+        JNIOnSurfaceCreated();
     }
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         gl.glViewport(0, 0, width, height);
-        onsurfacechanged(width, height);
+        JNIOnSurfaceChanged(width, height);
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
-        ondrawframe();
+        JNIOnDrawFrame();
     }
 }
 
